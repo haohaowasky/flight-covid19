@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import RegionList from './components/RegionList';
 import RegionForm from './components/RegionForm';
 import FilmDetail from './components/RegionStatus'
+import MAPApp from './components/Map'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Grid } from '@material-ui/core';
 
@@ -17,9 +18,9 @@ function App() {
       <Grid item xs={3}>
         <RegionForm/>
       </Grid>
+      <MAPApp/>
       </RegionContextProvider>
     </div>
   );
 }
-
 export default App;

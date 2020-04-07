@@ -10,6 +10,11 @@ export const regionReducer = (state, action) => {
             }]
         case 'REMOVE_REGION':
             return state.filter(region => region.id !== action.id)
+        case 'DERISK_REGION':
+            let deRiskRegion = state.filter(region => region.id === action.id)
+            deRiskRegion[0].status = "risk: low"
+            console.log("down risk deducer called", deRiskRegion)
+            return [...state, deRiskRegion]
         default:
             return state
     }

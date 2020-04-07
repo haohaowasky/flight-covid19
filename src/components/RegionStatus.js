@@ -1,8 +1,13 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { RegionContext } from '../contexts/RegionContext';
+import img from './graph.png';
+import flat from './flat.png';
 
-function CreateFilmModal() {
+
+function CreateAidModal({ region }) {
   const [open, setOpen] = useState(false);
+  const { regionDispatch } = useContext(RegionContext);
   const [values, setValues] = useState({
     title: null,
     year: null,
@@ -30,17 +35,25 @@ function CreateFilmModal() {
 
         <Fragment>
           <Button variant="outlined" color="primary" onClick={ show }>
-            Donate
+            intervene
           </Button>
           <Dialog open={open} onClose={hide} maxWidth="xs" aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Region Status</DialogTitle>
+            <li>
+            <img src={img} style={{width:135,height:105}}/>
+            <p> Prediction without intervention </p>
+            </li>
+            <li>
+            <img src={flat} style={{width:135,height:105}}/>
+            <p> Prediction with your intervention </p>
+            </li>
             <DialogContent>
               <TextField
                 autoFocus
                 margin="dense"
                 id="title"
-                label="Masks"
-                type="texts"
+                label="Intervention"
+                type="text"
                 onChange={ handleChange('title') }
                 fullWidth
               />
@@ -61,7 +74,7 @@ function CreateFilmModal() {
                 margin="dense"
                 id="rating"
                 label="Tracking Number"            
-                type="number"
+                type="text"
                 inputProps={{
                   min: 0,
                   max: 5,
@@ -72,10 +85,13 @@ function CreateFilmModal() {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={ () => {
+              <Button onClick={() => {
                 const title = values.title;
                 const year = parseInt(values.year);
                 const rating = parseFloat(values.rating);
+                regionDispatch( {type: 'DERISK_REGION', id: region.id })
+                hide();
+                
               }} variant="contained" color="primary">
                 Submit
               </Button>
@@ -88,4 +104,4 @@ function CreateFilmModal() {
   );
 }
 
-export default CreateFilmModal;
+export default CreateAidModal;

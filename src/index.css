@@ -43,6 +43,16 @@ body {
   color: #fff;
   font-size: 1.2em;
 }
+.riskstatus{
+  font-weight: bold;
+  color: rgb(233, 30, 30);
+  font-size: 1.2em;
+}
+.deriskstatus{
+  font-weight: bold;
+  color: rgb(36, 233, 10);
+  font-size: 1.2em;
+}
 .region-list .author{
   font-size: 0.9em;
   color: #ddd;
@@ -68,8 +78,8 @@ input[type='text']{
   padding: 10px;
   box-sizing: border-box;
   margin: 6px 0;
-  background: #23244D;
-  color: #fff;
+  background: rgba(35, 36, 77, 0);
+  color: rgb(0, 0, 0);
   border: 0;
 }
 input[type='texts']{
@@ -78,6 +88,7 @@ input[type='texts']{
   box-sizing: border-box;
   margin: 6px 0;
   background: rgb(255, 255, 255);
+  label:rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   border: 0;
 }

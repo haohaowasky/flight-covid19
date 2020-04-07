@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { RegionContext } from '../contexts/RegionContext';
 import RegionDetails from './ReginoDetails'
+import MAPApp from './Map'
 
 const RegionList = () => {
     const { regions } = useContext(RegionContext);
@@ -14,6 +15,7 @@ const RegionList = () => {
         </div>
      ) : (
          <div className= "empty"> Yay we beat Covid-19 </div>
+         
      )
 }
  

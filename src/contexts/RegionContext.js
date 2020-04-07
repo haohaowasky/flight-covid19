@@ -1,16 +1,29 @@
 import React, { createContext, useReducer, useEffect } from 'react';
 import { regionReducer } from '../reducers/regionReducer';
 import countyData from './data.js'
+import request from 'request'
 
 export const RegionContext = createContext();
 
+const getRequest = async (url) => {
+    return new Promise((resolve, reject) => {
+      request.get(url, (err, res, body) => {
+          resolve(body)        
+      })
+    })
+}
+
+const getData = async () => {
+    const data = await getRequest('http://localhost:5000/states')
+    console.log("got data", data)
+}
+
 const RegionContextProvider = (props) => {
     const [regions, regionDispatch] = useReducer(regionReducer, [], () => {
-        console.log(countyData)
-        var myObject = JSON.parse(countyData);
+        // console.log(countyData)
         const localData = localStorage.getItem('regions');
         console.log(localData)
-        return myObject ? JSON.parse(myObject): []
+        return localData ? JSON.parse(localData): []
     });
 
     useEffect(() => {
